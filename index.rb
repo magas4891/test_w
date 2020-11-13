@@ -1,5 +1,6 @@
 require_relative 'rule'
 require_relative 'checkout'
+require_relative 'item_list'
 
 rule1 = {
     item: 'A',
@@ -12,22 +13,10 @@ rule2 = {
 }
 rules = [rule1, rule2]
 
-
-item_list = {
-    'A': {
-        name: 'A',
-        price: 30
-    },
-    'B': {
-        name: 'B',
-        price: 20
-    }
-}
-
 co = Checkout.new(rules)
-co.scan(item_list[:A])
-co.scan(item_list[:B])
-co.scan(item_list[:A])
-co.scan(item_list[:A])
+co.scan(@item_list[:A])
+co.scan(@item_list[:B])
+co.scan(@item_list[:A])
+co.scan(@item_list[:A])
 price = co.total
 puts price
