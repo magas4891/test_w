@@ -2,7 +2,6 @@ class Checkout
   def initialize(rules)
     @rules = rules
     @basket = []
-    @total = 0
   end
 
   def scan(item)
@@ -10,10 +9,9 @@ class Checkout
   end
 
   def total
-    @basket.each do |item|
-      @total += item[:price]
-    end
-    @rules.each do |rule|
+    @total = @basket.inject(0) { |sum, it| sum += it[:price] }
+
+    @rules.map do |rule|
       rule_applied = Rule.new.apply(@basket, rule)
       @total -= rule_applied
     end

@@ -10,18 +10,14 @@ class Rule
       end
       0
     elsif args.has_key?(:basket_total)
-      if total_price >= args[:basket_total]
-        return args[:discount]
-      end
+      return args[:discount] if total_price >= args[:basket_total]
       0
     end
   end
 
   def basket_prise(basket)
     total_price = 0
-    basket.each do |item|
-      total_price += item[:price]
-    end
+    basket.inject(0) { |sum, item| sum += item[:price] }
     total_price
   end
 end
