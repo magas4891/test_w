@@ -10,12 +10,12 @@ class Checkout
   end
 
   def total
-    @basket.each do |it|
-      @total += it[:price]
+    @basket.each do |item|
+      @total += item[:price]
     end
     @rules.each do |rule|
-      r = Rule.new.apply(@basket, rule)
-      @total -= r
+      rule_applied = Rule.new.apply(@basket, rule)
+      @total -= rule_applied
     end
     @total
   end

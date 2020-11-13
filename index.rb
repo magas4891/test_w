@@ -29,4 +29,5 @@ co.scan(item_list[:A])
 co.scan(item_list[:B])
 co.scan(item_list[:A])
 co.scan(item_list[:A])
-pp co.total
+price = co.total
+puts price

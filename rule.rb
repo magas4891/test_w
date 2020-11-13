@@ -1,16 +1,16 @@
 class Rule
   def apply(basket, **args)
-    tot = basket_prise(basket)
+    total_price = basket_prise(basket)
 
     if args.has_key?(:item)
-      new_arr = basket.select { |it| it[:name] == args[:item] }
-      if new_arr.length >= args[:quantity]
-        z = new_arr.inject(0) { |sum, it| sum += it[:price] }
-        return z - args[:total_price]
+      temp_arr = basket.select { |item| item[:name] == args[:item] }
+      if temp_arr.length >= args[:quantity]
+        value = temp_arr.inject(0) { |sum, it| sum += it[:price] }
+        return value - args[:total_price]
       end
       0
     elsif args.has_key?(:basket_total)
-      if tot >= args[:basket_total]
+      if total_price >= args[:basket_total]
         return args[:discount]
       end
       0
@@ -18,10 +18,10 @@ class Rule
   end
 
   def basket_prise(basket)
-    val = 0
-    basket.each do |it|
-      val += it[:price]
+    total_price = 0
+    basket.each do |item|
+      total_price += item[:price]
     end
-    val
+    total_price
   end
 end
