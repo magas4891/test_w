@@ -9,8 +9,7 @@ class Checkout
   end
 
   def total
-    @total = @basket.inject(0) { |sum, it| sum += it[:price] }
-
+    @total = @basket.inject(0) { |sum, item| sum += item[:price] }
     @rules.map do |rule|
       rule_applied = Rule.new.apply(@basket, rule)
       @total -= rule_applied
