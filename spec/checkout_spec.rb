@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require_relative '../checkout'
-require_relative '../rule'
+require_relative '../lib/checkout'
+require_relative '../lib/rule'
 
 RSpec.describe Checkout do
   subject { described_class.new(rules) }
